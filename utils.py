@@ -5,7 +5,7 @@ from pythonosc import udp_client
 from pythonosc.osc_message_builder import OscMessageBuilder
 
 ip = "127.0.0.1"
-port = 3001
+port = 3000
 address = "/mediapipe/objects"
 
 MARGIN = 10  # pixels
@@ -22,13 +22,7 @@ def visualize(width, height,
     image,
     detection_result
 ) -> np.ndarray:
-  """Draws bounding boxes on the input image and return it.
-  Args:
-    image: The input RGB image.
-    detection_result: The list of all "Detection" entities to be visualized.
-  Returns:
-    Image with bounding boxes.
-  """
+
   det = 0
   
   for detection in detection_result.detections:
@@ -52,7 +46,7 @@ def visualize(width, height,
     
     print(category_name, x_pos, y_pos, probability)
     # send normalised 
-    client.send_message(address, [category_name, det, x_pos, y_pos, probability])
+    client.send_message(address, [category_name, det, x_pos, 1 - y_pos, probability])
     
     result_text = category_name + ' (' + str(probability) + ')'
     text_location = (MARGIN + bbox.origin_x,

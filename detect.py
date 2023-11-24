@@ -50,7 +50,7 @@ def run(model: str, camera_id: int, width: int, height: int) -> None:
   base_options = python.BaseOptions(model_asset_path=model)
   options = vision.ObjectDetectorOptions(base_options=base_options,
                                          running_mode=vision.RunningMode.LIVE_STREAM,
-                                         score_threshold=0.5,
+                                         score_threshold=0.3,
                                          result_callback=visualize_callback)
   detector = vision.ObjectDetector.create_from_options(options)
 
@@ -64,7 +64,7 @@ def run(model: str, camera_id: int, width: int, height: int) -> None:
       )
 
     counter += 1
-    image = cv2.flip(image, 1)
+    # image = cv2.flip(image, 1)
 
     # Convert the image from BGR to RGB as required by the TFLite model.
     rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -111,7 +111,7 @@ def main():
       '--model',
       help='Path of the object detection model.',
       required=False,
-      default='efficientdet_lite0.tflite')
+      default='hotwheels_skateboard.tflite')
   parser.add_argument(
       '--cameraId', help='Id of camera.', required=False, type=int, default=0)
   parser.add_argument(
