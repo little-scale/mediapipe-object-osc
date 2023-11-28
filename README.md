@@ -19,4 +19,11 @@ To run:
 - Change line 7 - 9 of utils.py to change OSC IP, port and address
 - In terminal, run pip install mediapipe and pip install python-osc
 - Then change directory to repo and run python detect.py
+- To use with Ableton Live, load the Object Detection Receiver (little-scale.object-detection-receiver.amxd) M4L device on an Audio track
+- Choose the right OSC port (default is 3000 or 3001) and run the object detection Python script above
+- As object classes are detected, the drop down menu in the M4L device will populate
+- Choose the right object class from the drop down menu
+- Now map X and Y location of that particular class to Ableton parameters
+- Smooth smooths out values over time
+- Note - multiple little-scale.object-detection-receiver.amxd devices can be loaded in the same set without issue
 
